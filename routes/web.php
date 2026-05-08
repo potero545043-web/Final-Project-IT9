@@ -8,7 +8,11 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [ItemController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return redirect('/items');
+});
+
+Route::get('/items', [ItemController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function (): void {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
